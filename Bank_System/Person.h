@@ -54,7 +54,7 @@ public:
 
 	// methods
 
-	void display() {
+	virtual void display() {
 		cout << "Name = " << getName() << endl;
 		cout << "ID = " << getId() << endl;
 		cout << "Password = " << getPassword() << endl;
