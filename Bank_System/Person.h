@@ -15,6 +15,9 @@ protected:
 
 public:
 
+	// para. constructor
+
+	Person(string name, int id, string password):name(name),id(id),password(password){}
 
 	// setters
 
@@ -47,7 +50,7 @@ public:
 		return id;
 	}
 
-	string getPassword() {
+	string getPassword() const {
 		return password;
 	}
 

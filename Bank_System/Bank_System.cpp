@@ -9,12 +9,10 @@ using namespace std;
 
 int main()
 {
-    Person p;
-    p.setName("Ahmed");
-    p.setId(908);
-    p.setPassword("Ahmed005");
-
+    Person p("Ahmed", 908,"Ahmed005");
+    
     p.display();
+
     Client c;
     c.setbalance(3500.0);
     c.display();

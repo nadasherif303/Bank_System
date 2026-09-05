@@ -1,35 +1,23 @@
 #pragma once
 #include <iostream>
+#include <iostream>
 #include <string>
 #include <cctype>
+#include "Employee.h"
 
 using namespace std;
 
-class Admin {
-private:
-    int id;
-    string name;
-    string password;
-    double salary;
+#pragma once
 
-    //Admin
-    bool isValidName(string n);
-    bool isValidPassword(string p);
 
+class Admin : public Employee{
 public:
+    // Default Constructor
     Admin();
+
+    // Parameterized Constructor
     Admin(int id, string name, string password, double salary);
 
-    //(Setters)
-    void setId(int id);
-    void setName(string name);
-    void setPassword(string password);
-    void setSalary(double salary);  //(Getters)
-    int getId();
-    string getName();
-    string getPassword();
-    double getSalary();
-
-
-    void display();
+    // Display Admin information
+    void display() override;
 };

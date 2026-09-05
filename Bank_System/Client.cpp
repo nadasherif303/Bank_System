@@ -1,6 +1,6 @@
 #include "Client.h"
 //constructors
-Client::Client() :Person(), balance(1500) {};
+Client::Client() :Person(name,id,password), balance(1500) {};
 //setters
 void Client:: setbalance(double balance){
 	if (Validation::balanceValide(balance)) {
