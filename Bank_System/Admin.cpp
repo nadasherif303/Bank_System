@@ -9,13 +9,15 @@ Admin::Admin() : Employee() {}
 
 
 // Parameterized Constructor
-Admin::Admin(int id, string name, string password, double salary)
-    : Employee(id, name, password, salary){ }
+Admin::Admin(string name, int id, string password, double salary)
+    : Employee(name, id, password, salary) {}
 
 
 // Display Admin information
 void Admin::display(){
+
     cout << "=== Admin Information ===" << endl;
 
-    Employee::display();
+    Person::display();
+    cout << "Salary: " << getSalary() << endl;
 }

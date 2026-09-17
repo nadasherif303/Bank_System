@@ -3,6 +3,9 @@
 
 #include "Person.h"
 #include "Validation.h"
+#include <string>
+using namespace std;
+
 
 class Employee : public Person {
 private:
@@ -10,12 +13,12 @@ private:
 
 public:
     Employee();
-    Employee(int id, std::string name, std::string password, double salary);
+    Employee(string name, int id, string password, double salary);
 
     void setSalary(double salary);
     double getSalary() const;
 
-    void display() const override;
+    void display();
 };
 
 #endif

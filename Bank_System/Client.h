@@ -8,15 +8,17 @@ private:
 public:
 	//constructors
 	Client();
+	Client(string name, int id, string password, double balance);
 	
 	//setters
 	void setbalance(double balance);
-	double getbalance();
+	double getbalance()const;
+
 	//Operations
 	void deposit(double amount);
 	void withdraw(double amount);
 	void transferTo(double amount,Client& recipient);
-	void checkBalance();
+	void checkBalance()const ;
 	void display() override;
 
 	

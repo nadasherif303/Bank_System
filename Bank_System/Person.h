@@ -10,14 +10,14 @@ class Person {
 protected:
 
 	string name;
-	int id;
+	int id = 0;
 	string password;
 
 public:
 
-	// para. constructor
-
-	Person(string name, int id, string password):name(name),id(id),password(password){}
+	// constructors
+	Person() {}
+	Person(string name, int id, string password) :name(name), id(id), password(password) {}
 
 	// setters
 
@@ -62,6 +62,5 @@ public:
 		cout << "ID = " << getId() << endl;
 		cout << "Password = " << getPassword() << endl;
 
-		cout << "===========================\n";
 	}
 };

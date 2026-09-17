@@ -1,6 +1,14 @@
 #include "Client.h"
+
+
 //constructors
-Client::Client() :Person(name,id,password), balance(1500) {};
+Client::Client() : Person(), balance(1500) {}
+
+Client::Client(string name, int id, string password, double balance)
+	: Person(name, id, password){
+	setbalance(balance);
+}
+
 //setters
 void Client:: setbalance(double balance){
 	if (Validation::balanceValide(balance)) {
@@ -10,7 +18,7 @@ void Client:: setbalance(double balance){
 		cout << "Invalid balance! Minimum balance is 1500\n";
 	}
 	};
-double Client::getbalance() {
+double Client::getbalance() const{
 	return balance;
 }
 //Operations
@@ -43,10 +51,12 @@ void Client:: transferTo(double amount, Client& recipient) {
 		cout << "Transfer failed to " << recipient.getName() << endl;
 	}
 };
-void Client::checkBalance() {
+void Client::checkBalance() const {
 	cout << "Current Balance : " << balance << endl;
 }
 void Client::display() {
+	    cout << "=== Client Information ===" << endl;
+	
 		Person::display();
-		cout << "balance" << getbalance() << endl;
-	}
+		cout << "Balance = " << getbalance() << endl;
+}

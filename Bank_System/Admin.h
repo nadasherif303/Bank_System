@@ -14,7 +14,7 @@ public:
     Admin();
 
     // Parameterized Constructor
-    Admin(int id, string name, string password, double salary);
+    Admin(string name, int id, string password, double salary);
 
     // Display Admin information
     void display() override;

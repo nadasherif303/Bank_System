@@ -1,4 +1,5 @@
 #pragma once
+
 #include <vector>
 #include <string>
 #include <sstream>
@@ -23,15 +24,15 @@ inline vector<string> Parser::split(string line) {
 
 inline Client Parser::parseToClient(string line) {
     auto v = split(line);
-    return Client(v[0], v[1], v[2], stod(v[3]));
+    return Client(v[0], stoi(v[1]), v[2], stod(v[3]));
 }
 
 inline Employee Parser::parseToEmployee(string line) {
     auto v = split(line);
-    return Employee(v[0], v[1], v[2], stod(v[3]));
+    return Employee(v[0], stoi(v[1]), v[2], stod(v[3]));
 }
 
 inline Admin Parser::parseToAdmin(string line) {
     auto v = split(line);
-    return Admin(v[0], v[1], v[2], stod(v[3]));
+    return Admin(v[0], stoi(v[1]), v[2], stod(v[3]));
 }
