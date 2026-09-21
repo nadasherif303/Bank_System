@@ -126,8 +126,8 @@ public:
 
 
 	// print all clients data from txt file
-	static void getClients() {
-
+	static vector<Client> getClients() {
+		vector<Client> clients;
 		// open client txt file
 		ifstream file("Clients.txt");
 
@@ -158,12 +158,13 @@ public:
 		else {
 			cout << "Unable to open clients file\n";
 		}
+		return clients;
 	}
 
 
 	// print all employees data from txt file
-	static void getEmployees() {
-
+	static vector<Employee> getEmployees() {
+		vector<Employee> employees;
 		// open employee txt file
 		ifstream file("Employees.txt");
 
@@ -194,13 +195,13 @@ public:
 		else {
 			cout << "Unable to open employees file\n";
 		}
-
+		return employees;
 	}
 
 
 	// print all admins data from txt file
-	static void getAdmins() {
-
+	static vector<Admin> getAdmins() {
+		vector<Admin> admins;
 		// open admin txt file
 		ifstream file("Admins.txt");
 
@@ -230,6 +231,7 @@ public:
 		else {
 			cout << "Unable to open admins file\n";
 		}
+		return admins;
 	}
 
 
