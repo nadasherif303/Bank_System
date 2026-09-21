@@ -9,6 +9,8 @@
 #include "Admin.h"
 #include "Parser.h"
 
+using namespace std;
+
 #pragma once
 
 class FileHelper{
