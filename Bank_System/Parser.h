@@ -4,7 +4,15 @@
 #include <string>
 #include <sstream>
 
+#include "Admin.h"
+#include "Client.h"
+#include "Employee.h"
+
 using namespace std;
+
+class Admin;
+class Employee;
+class Client;
 
 class Parser {
 public:
@@ -13,26 +21,3 @@ public:
     static Employee parseToEmployee(string line);
     static Admin parseToAdmin(string line);
 };
-
-inline vector<string> Parser::split(string line) {
-    stringstream ss(line);
-    string t;
-    vector<string> r;
-    while (getline(ss, t, ',')) r.push_back(t);
-    return r;
-}
-
-inline Client Parser::parseToClient(string line) {
-    auto v = split(line);
-    return Client(v[0], stoi(v[1]), v[2], stod(v[3]));
-}
-
-inline Employee Parser::parseToEmployee(string line) {
-    auto v = split(line);
-    return Employee(v[0], stoi(v[1]), v[2], stod(v[3]));
-}
-
-inline Admin Parser::parseToAdmin(string line) {
-    auto v = split(line);
-    return Admin(v[0], stoi(v[1]), v[2], stod(v[3]));
-}

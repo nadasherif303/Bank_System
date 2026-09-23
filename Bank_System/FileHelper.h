@@ -1,9 +1,8 @@
 #include <iostream>
 #include <string>
-#include <exception>
+#include <vector>
 #include <fstream>
 
-#include "Validation.h"
 #include "Client.h"
 #include "Employee.h"
 #include "Admin.h"
@@ -12,6 +11,10 @@
 using namespace std;
 
 #pragma once
+
+class Admin;
+class Employee;
+class Client;
 
 class FileHelper{
 public:

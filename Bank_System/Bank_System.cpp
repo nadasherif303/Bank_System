@@ -10,6 +10,7 @@
 #include "Admin.h"
 #include "Parser.h"
 #include "FileHelper.h"
+#include "FileManager.h"
 
 using namespace std;
 
