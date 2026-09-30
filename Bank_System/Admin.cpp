@@ -67,3 +67,13 @@ void Admin::editEmployee(int id, string name, string password, double salary) {
         cout << "Employee with ID " << id << " not found.\n";
     }
 }
+
+
+void Admin::display() {
+
+    cout << "=== Admin Information ===" << endl;
+
+    Person::display();
+    cout << "Salary: " << getSalary() << "\n";
+}
+

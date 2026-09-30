@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -15,4 +16,6 @@ public:
     Employee* searchEmployee(int id);
     void editEmployee(int id, std::string name, std::string password, double salary);
     void listEmployee();
+
+    void display();
 };

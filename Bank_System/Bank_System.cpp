@@ -32,10 +32,10 @@ int main()
 
     Client c(p.getName(), p.getId(), p.getPassword(), 5000.0);
 
-    c.display();
+    c.display();*/
 
 
-    cout << "\n================ Phase_02 ================\n\n";
+    /*cout << "\n================ Phase_02 ================\n\n";
 
 
     cout << "======== 1) Parser Class ========\n\n";
