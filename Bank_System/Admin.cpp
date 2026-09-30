@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+
 #include "Admin.h"
 #include "FileManager.h"
 
@@ -12,8 +13,9 @@ extern vector<Employee> allEmployees;
 
 Admin::Admin() : Employee() {}
 
-Admin::Admin(string name, int id,  string password, double salary)
-    : Employee(name, id,  password, salary) {}
+Admin::Admin(string name, int id, string password, double salary)
+    : Employee(name, id, password, salary) {
+}
 
 
 void Admin::addEmployee(Employee& employee) {
@@ -53,14 +55,15 @@ void Admin::editEmployee(int id, string name, string password, double salary) {
         emp->setPassword(password);
         emp->setSalary(salary);
 
-        
+
         FileManager fm;
         fm.removeAllEmployees();
         for (auto& e : allEmployees) {
             fm.addEmployee(e);
         }
         cout << "Employee with ID " << id << " updated successfully.\n";
-    } else {
+    }
+    else {
         cout << "Employee with ID " << id << " not found.\n";
     }
 }
