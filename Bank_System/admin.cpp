@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "Admin.h"
+#include "FileManager.h"
 
 using namespace std;
 
@@ -11,8 +12,8 @@ extern vector<Employee> allEmployees;
 
 Admin::Admin() : Employee() {}
 
-Admin::Admin(int id, string name, string password, double salary)
-    : Employee(id, name, password, salary) {}
+Admin::Admin(string name, int id,  string password, double salary)
+    : Employee(name, id,  password, salary) {}
 
 
 void Admin::addEmployee(Employee& employee) {
