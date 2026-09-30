@@ -2,6 +2,7 @@
 #include <fstream>
 #include "Employee.h"
 #include "FileHelper.h"
+#include "FileManager.h"
 #include "Client.h"
 #include "Parser.h"
 
@@ -16,6 +17,7 @@ Employee::Employee( string name, int id, string password, double salary)
     setSalary(salary);
 }
 
+
 void Employee::setSalary(double salary) {
     if (Validation::salaryValide(salary)) {
         this->salary = salary;
@@ -24,86 +26,68 @@ void Employee::setSalary(double salary) {
     }
 }
 
+
 double Employee::getSalary() const {
     return salary;
 }
+
 
 void Employee::addClient(Client& client) {
     FileHelper::saveClient(client);
 }
 
-Client* Employee::searchClient(int id) {
-    ifstream file("Clients.txt");
-    string line;
 
-    if (file.is_open()) {
-        while (getline(file, line)) {
-            if (!line.empty()) {
-                Client c = Parser::parseToClient(line);
-                if (c.getId() == id) {
-                    file.close();
-                    return new Client(c);
-                }
-            }
+Client* Employee::searchClient(int id) {
+
+    vector<Client>::iterator ClientIt;
+
+    FileManager fm;
+
+    for (ClientIt = fm.getAllClients().begin(); ClientIt != fm.getAllClients().end();ClientIt++) {
+
+        if (ClientIt->getId() == id) {
+
+            return &(*ClientIt);
         }
-        file.close();
     }
-    
+
+    // if not found
     return nullptr;
    
-    
 }
 
-void Employee::listClient() {
-    FileHelper::getClients();
+
+void Employee::listClients() {
+
+    vector<Client>::iterator ClientsIt;
+
+    FileManager fm;
+
+    for (ClientsIt = fm.getAllClients().begin(); ClientsIt != fm.getAllClients().end(); ClientsIt++) {
+        ClientsIt->display();
+    }
 }
+
 
 void Employee::editClient(int id, string name, string password, double balance) {
 
-    vector<Client> clients;
 
-    ifstream file("Clients.txt");
+    Client* clientPtr = searchClient(id);
 
-    string line;
+    if (clientPtr != nullptr) {
+        clientPtr->setName(name);
+        clientPtr->setPassword(password);
+        clientPtr->setbalance(balance);
 
-    bool found = false;
-
-    if (file.is_open()) {
-        while (getline(file, line)) {
-            if (!line.empty()) {
-                Client c = Parser::parseToClient(line);
-                if (c.getId() == id) {
-                    c.setName(name);
-                    c.setPassword(password);
-                    c.setbalance(balance);
-                    found = true;
-                }
-                clients.push_back(c);
-            }
-        }
-        file.close();
+        cout << "Client " << clientPtr->getName() << " Updated Successfully\n";
     }
 
-    if (!found) {
+    else {
         cout << "Client not found!";
-        return;
     }
 
-    
-    ofstream outFile("Clients.txt", ios::trunc);
-
-    if (outFile.is_open()) {
-        for (const auto& c : clients) {
-            outFile << c.getName() << ","
-                    << c.getId() << ","
-                    << c.getPassword() << ","
-                    << c.getbalance() << endl;
-        }
-
-        outFile.close();
-        cout << "Client updated successfully!\n";
-    }
 }
+
 
 void Employee::display(){
 

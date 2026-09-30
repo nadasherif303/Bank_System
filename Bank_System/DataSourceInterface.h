@@ -1,9 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <string>
-#include <vector>
-
 
 #include "Client.h"
 #include "Employee.h"
@@ -15,6 +12,7 @@ using namespace std;
 
 class DataSourceInterface {
 public:
+
     virtual void addClient(Client c) = 0;
     virtual void addEmployee(Employee e) = 0;
     virtual void addAdmin(Admin a) = 0;
@@ -26,7 +24,4 @@ public:
     virtual void removeAllClients() = 0;
     virtual void removeAllEmployees() = 0;
     virtual void removeAllAdmins() = 0;
-
-    // Destructor 
-    virtual ~DataSourceInterface() {}
 };

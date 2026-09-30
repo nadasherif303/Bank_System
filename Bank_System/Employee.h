@@ -25,7 +25,7 @@ public:
 
     Client* searchClient(int id);
 
-    void listClient();
+    void listClients();
 
     void editClient(int id, string name, string password, double salary);
 
