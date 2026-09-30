@@ -1,6 +1,5 @@
 #include "Parser.h"
 
-
  vector<string> Parser::split(string line) {
     stringstream ss(line);
     string t;

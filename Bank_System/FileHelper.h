@@ -1,20 +1,23 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include <fstream>
 
+#include "Parser.h"
 #include "Client.h"
 #include "Employee.h"
 #include "Admin.h"
-#include "Parser.h"
+
 
 using namespace std;
 
-#pragma once
 
 class Admin;
 class Employee;
 class Client;
+
 
 class FileHelper{
 public:

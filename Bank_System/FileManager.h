@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 
-
 #include "DataSourceInterface.h"
 #include "FileHelper.h"
 

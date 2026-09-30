@@ -48,9 +48,9 @@ Client* Employee::searchClient(int id) {
         }
         file.close();
     }
-    else {
-        return nullptr;
-    }
+    
+    return nullptr;
+   
     
 }
 

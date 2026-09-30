@@ -4,15 +4,17 @@
 #include <string>
 #include <sstream>
 
-#include "Admin.h"
+class Client;
+class Employee;
+class Admin;
+
 #include "Client.h"
 #include "Employee.h"
+#include "Admin.h"
+
 
 using namespace std;
 
-class Admin;
-class Employee;
-class Client;
 
 class Parser {
 public:

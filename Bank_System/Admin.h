@@ -1,21 +1,18 @@
+#pragma once
 #include <iostream>
+#include <vector>
 #include <string>
-#include <cctype>
 #include "Employee.h"
 
-using namespace std;
-
-#pragma once
-
-
-class Admin : public Employee{
+class Admin : public Employee {
 public:
-    // Default Constructor
+   
     Admin();
+    Admin(string name, int id,  string password, double salary);
 
-    // Parameterized Constructor
-    Admin(string name, int id, string password, double salary);
-
-    // Display Admin information
-    void display() override;
+   
+    void addEmployee(Employee& employee);
+    Employee* searchEmployee(int id);
+    void editEmployee(int id, std::string name, std::string password, double salary);
+    void listEmployee();
 };

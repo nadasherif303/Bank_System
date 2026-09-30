@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include <vector>
 #include <fstream>
 
 #include "Validation.h"
@@ -8,18 +9,24 @@
 #include "Client.h"
 #include "Employee.h"
 #include "Admin.h"
+
 #include "Parser.h"
 #include "FileHelper.h"
 #include "FileManager.h"
 
+#include "Screens.h"
+
+
 using namespace std;
 
+
+vector<Employee> allEmployees;
 
 
 int main()
 {
 
-    cout << "================ Phase_01 ================\n\n";
+    /*cout << "================ Phase_01 ================\n\n";
 
     Person p("Ahmed", 908, "Ahmed005");
 
@@ -93,7 +100,14 @@ int main()
 
     cout << "Employee's last ID : " << FileHelper::getLast("EmployeeLastId.txt") << endl;
 
-    cout << "Admin's last ID : " << FileHelper::getLast("AdminLastId.txt") << endl;
+    cout << "Admin's last ID : " << FileHelper::getLast("AdminLastId.txt") << endl;*/
 
 
+    cout << "\n================ Phase_03 ================\n\n";
+
+
+    cout << "======== 1) Screens Class ========\n\n";
+
+    Screens::runApp();
+   
 }
