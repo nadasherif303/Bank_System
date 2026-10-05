@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Client.h"
+#include "FileHelper.h"
 
 using namespace std;
 
@@ -27,18 +29,70 @@ public:
     }
 
     static Client* login(int id, string password) {
+        vector<Client> clients = FileHelper::getClients();
+        for (int i = 0; i < clients.size(); i++) {
+            if (clients[i].getId() == id && clients[i].getPassword() == password) {
+                return new Client(clients[i]);
+            }
+        }
         return nullptr;
     }
 
     static bool clientOptions(Client* client) {
+        printClientMenu();
         int choice;
         cout << "Choose an option: ";
         cin >> choice;
-        
-        if (choice == 7) {
+
+        if (choice == 1) {
+            client->display();
+        } 
+        else if (choice == 2) {
+            client->checkBalance();
+        } 
+        else if (choice == 3) {
+            updatePassword(client);
+        } 
+        else if (choice == 4) {
+            double amount;
+            cout << "Enter amount to withdraw: ";
+            cin >> amount;
+            client->withdraw(amount);
+        } 
+        else if (choice == 5) {
+            double amount;
+            cout << "Enter amount to deposit: ";
+            cin >> amount;
+            client->deposit(amount);
+        } 
+        else if (choice == 6) {
+            double amount;
+            int recipientId;
+            cout << "Enter recipient ID: ";
+            cin >> recipientId;
+            cout << "Enter amount to transfer: ";
+            cin >> amount;
+
+            vector<Client> clients = FileHelper::getClients();
+            bool found = false;
+            for (int i = 0; i < clients.size(); i++) {
+                if (clients[i].getId() == recipientId) {
+                    client->transferTo(amount, clients[i]);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                cout << "Recipient not found!\n";
+            }
+        } 
+        else if (choice == 7) {
             return false;
+        } 
+        else {
+            cout << "Invalid option!\n";
         }
-        
+
         return true;
     }
 };
