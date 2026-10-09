@@ -52,3 +52,80 @@ public:
 	}
 
 };
+
+
+
+
+void EmployeeManager::editClientInfo(Employee* employee) {
+    int id;
+    cout << "Enter Client ID to edit: ";
+    cin >> id;
+
+   
+    Client* client = FileHelper::getClient(id); 
+    if (client != nullptr) {
+        string name, password;
+        double balance;
+
+        cout << "Enter new name: ";
+        cin >> name;
+        cout << "Enter new password: ";
+        cin >> password;
+        cout << "Enter new balance: ";
+        cin >> balance;
+
+        client->setName(name);
+        client->setPassword(password);
+        client->setBalance(balance);
+
+        FileHelper::updateClients(); 
+        cout << "Client information updated successfully!\n";
+    } else {
+        cout << "Client with ID " << id << " not found!\n";
+    }
+}
+
+
+Employee* EmployeeManager::login(int id, string password) {
+    vector<Employee> employees = FileHelper::getEmployees();
+    
+    for (size_t i = 0; i < employees.size(); i++) {
+        if (employees[i].getId() == id && employees[i].getPassword() == password) {
+            // Return a dynamically allocated pointer to the authenticated employee
+            return new Employee(employees[i]);
+        }
+    }
+    return nullptr;
+}
+
+
+bool EmployeeManager::employeeOptions(Employee* employee) {
+    printEmployeMenu();
+    int choice;
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    switch (choice) {
+        case 1:
+            newClient(employee);
+            return true;
+        case 2:
+            listAllClients(employee);
+            return true;
+        case 3:
+            searchForClient(employee);
+            return true;
+        case 4:
+            editClientInfo(employee);
+            return true;
+        case 5:
+            employee->display();
+            return true;
+        case 6:
+            cout << "Logging out...\n";
+            return false; 
+        default:
+            cout << "Invalid choice. Please try again.\n";
+            return true;
+    }
+}
