@@ -14,7 +14,7 @@ using namespace std;
 
 
 class AdminManager{
-
+public:
 
     static void printAdminMenu() {
 
@@ -46,7 +46,7 @@ class AdminManager{
     }
 
 
-    bool AdminOptions(Admin* admin) {
+    static bool AdminOptions(Admin* admin) {
 
         printAdminMenu();
         int choice;

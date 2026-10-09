@@ -2,9 +2,9 @@
 #include "Screens.h"
 
 
-//#include "ClientManager.h"
-//#include "EmployeeManager.h"
-//#include "AdminManager.h"
+#include "ClientManager.h"
+#include "EmployeeManager.h"
+#include "AdminManager.h"
 
 
 using namespace std;
@@ -78,25 +78,70 @@ void Screens::logInScreen(int c) {
 
     bankName();
 
+    int id{};
+    string password;
+
+    cout << "Please Enter ID : ";
+    cin >> id;
+
+    cout << "Please Enter Password : ";
+    cin >> password;
+
+    
     switch (c) {
-        case 1:
-            cout << "--- Client Login ---\n";
-            //ClientManager::login();
-            break;
+    case 1: {
+        cout << "--- Client Login ---\n";
 
-        case 2:
-            cout << "--- Employee Login ---\n";
-            //EmployeeManager::login();
-            break;
+        Client* client = ClientManager::login(id, password);
+        if (client != nullptr) {
+          
+            while (ClientManager::clientOptions(client));
+            delete client; 
+        }
 
-        case 3:
-            cout << "--- Admin Login ---\n";
-            //AdminManager::login();
-            break;
+        else {
+            cout << "\nInvalid ID or Password!\n";
+            system("pause");
+        }
 
-        default:
-            invalid(c);
-            break;
+        break;
+    }
+
+    case 2: {
+        cout << "--- Employee Login ---\n";
+
+        Employee* employee = EmployeeManager::login(id, password);
+        if (employee != nullptr) {
+            while (EmployeeManager::employeeOptions(employee));
+            delete employee;
+        }
+
+        else {
+            cout << "\nInvalid ID or Password!\n";
+            system("pause");
+        }
+
+        break;
+    }
+
+    case 3:{
+        cout << "--- Admin Login ---\n";
+        Admin* admin = AdminManager::login(id, password);
+        if (admin != nullptr) {
+            while (AdminManager::AdminOptions(admin));
+            delete admin;
+        }
+        else {
+            cout << "\nInvalid ID or Password!\n";
+            system("pause");
+        }
+        break;
+    }
+
+    default: {
+        invalid(c);
+        break;
+    }
     }
 
 }
@@ -117,7 +162,6 @@ void Screens::runApp() {
         if (choice >= 1 && choice <= 3) {
 
             logInScreen(choice);
-            break; // remember to check if we need it or not
    
         }
 

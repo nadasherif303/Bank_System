@@ -120,40 +120,43 @@ public:
 
         switch (choice) {
         case 1:
+            system("cls");
             newClient(employee);
-            return true;
+            break;
+
         case 2:
+            system("cls");
             listAllClients(employee);
-            return true;
+            break;
+
         case 3:
+            system("cls");
             searchForClient(employee);
-            return true;
+            break;
+
         case 4:
+            system("cls");
             editClientInfo(employee);
-            return true;
+            break;
+
         case 5:
+            system("cls");
             employee->display();
-            return true;
+            break;
+
         case 6:
             cout << "Logging out...\n";
-            return false;
+            break;
+
         default:
             cout << "Invalid choice. Please try again.\n";
-            return true;
+            break;
         }
+
+        system("pause");
+        return true;
+
     }
 
 
-
 };
-
-
-
-
-
-
-
-
-
-
-

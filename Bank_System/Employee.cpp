@@ -39,9 +39,9 @@ void Employee::addClient(Client& client) {
 
 Client* Employee::searchClient(int id) {
 
-    vector<Client>::iterator ClientIt;
-
     FileManager fm;
+
+    vector<Client>::iterator ClientIt;
 
     for (ClientIt = fm.getAllClients().begin(); ClientIt != fm.getAllClients().end();ClientIt++) {
 

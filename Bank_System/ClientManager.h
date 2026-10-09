@@ -30,6 +30,7 @@ public:
 
     static Client* login(int id, string password) {
         vector<Client> clients = FileHelper::getClients();
+
         for (int i = 0; i < clients.size(); i++) {
             if (clients[i].getId() == id && clients[i].getPassword() == password) {
                 return new Client(clients[i]);
@@ -39,35 +40,48 @@ public:
     }
 
     static bool clientOptions(Client* client) {
+        system("cls");
+
         printClientMenu();
+
         int choice;
         cout << "Choose an option: ";
         cin >> choice;
 
-        if (choice == 1) {
+        switch (choice) {
+        case 1:
             client->display();
-        } 
-        else if (choice == 2) {
+            break;
+
+        case 2:
             client->checkBalance();
-        } 
-        else if (choice == 3) {
+            break;
+
+        case 3:
             updatePassword(client);
-        } 
-        else if (choice == 4) {
+            break;
+
+        case 4: {
             double amount;
             cout << "Enter amount to withdraw: ";
             cin >> amount;
             client->withdraw(amount);
-        } 
-        else if (choice == 5) {
+            break;
+        }
+
+        case 5: {  
             double amount;
             cout << "Enter amount to deposit: ";
             cin >> amount;
             client->deposit(amount);
-        } 
-        else if (choice == 6) {
+            break;
+        }
+
+        case 6: {
+            
             double amount;
             int recipientId;
+
             cout << "Enter recipient ID: ";
             cin >> recipientId;
             cout << "Enter amount to transfer: ";
@@ -75,7 +89,7 @@ public:
 
             vector<Client> clients = FileHelper::getClients();
             bool found = false;
-            for (int i = 0; i < clients.size(); i++) {
+            for (size_t i = 0; i < clients.size(); i++) {
                 if (clients[i].getId() == recipientId) {
                     client->transferTo(amount, clients[i]);
                     found = true;
@@ -85,14 +99,18 @@ public:
             if (!found) {
                 cout << "Recipient not found!\n";
             }
-        } 
-        else if (choice == 7) {
+            break;
+        }
+        case 7:
             return false;
-        } 
-        else {
+
+        default:
             cout << "Invalid option!\n";
+            break;
         }
 
+        system("pause");
         return true;
     }
+    
 };
