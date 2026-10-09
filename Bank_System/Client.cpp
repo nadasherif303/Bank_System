@@ -9,6 +9,7 @@ Client::Client(string name, int id, string password, double balance)
 	setbalance(balance);
 }
 
+
 //setters
 void Client:: setbalance(double balance){
 	if (Validation::balanceValide(balance)) {
@@ -21,6 +22,8 @@ void Client:: setbalance(double balance){
 double Client::getbalance() const{
 	return balance;
 }
+
+
 //Operations
 void Client::deposit(double amount) {
 	if (amount>0) {
@@ -30,7 +33,9 @@ void Client::deposit(double amount) {
 	else {
 		cout << "Invalid deposit amount!\n";
 	}
-};
+}
+
+
 void Client::withdraw(double amount) {
 	if (amount > 0 && (balance-amount)>=1500) {
 		balance -= amount;
@@ -40,7 +45,9 @@ void Client::withdraw(double amount) {
 	else {
 		cout << " withdraw failed!\n";
 	}
-};
+}
+
+
 void Client:: transferTo(double amount, Client& recipient) {
 	if (amount >0 && (balance - amount) >= 1500) {
 		balance -= amount;
@@ -50,10 +57,14 @@ void Client:: transferTo(double amount, Client& recipient) {
 	else {
 		cout << "Transfer failed to " << recipient.getName() << endl;
 	}
-};
+}
+
+
 void Client::checkBalance() const {
 	cout << "Current Balance : " << balance << endl;
 }
+
+
 void Client::display() {
 	    cout << "=== Client Information ===" << endl;
 	

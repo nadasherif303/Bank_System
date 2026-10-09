@@ -1,14 +1,19 @@
 #pragma once
+
 #include<iostream>
 #include<string>
 #include<vector>
+
 #include"Employee.h"
 #include"Client.h"
 #include"FileHelper.h"
+
 using namespace std;
+
 class EmployeeManager {
 public:
-	static void printClientMenu() {
+
+	static void printEmployeeMenu() {
 		cout << "\n---Employee Menu---\n";
 		cout << "1. Add New Client\n";
 		cout << "2. List All Clients\n";
@@ -18,9 +23,12 @@ public:
 		cout << "6. Logout\n";
 		
 	}
+
+
 	static void newClient(Employee* employee) {
 		string name, password;
 		double balance;
+
 		cout << "\n---Add New Client---\n";
 		cout << "Enter Name : ";
 		cin >> name;
@@ -28,17 +36,23 @@ public:
 		cin >> password;
 		cout << "Enter Initial Balance : ";
 		cin >> balance;
+
 		int id = FileHelper::getLast("ClientLastId.txt") + 1;
 		Client newClientobj(name,id,password,balance);
+
 		employee->addClient(newClientobj);
 		FileHelper::saveClient(newClientobj);
 		cout << "Client added successfully with id: " << id << endl;
 	}
+
+
 	static void listAllClients(Employee* employee) {
 		cout << "\n---List Of All Clients---\n";
 		employee->listClients();
 	}
-	static void searhForClient(Employee* employee) {
+
+
+	static void searchForClient(Employee* employee) {
 		int id;
 		cout << "\nEnter Client Id To Search: ";
 		cin >> id;
@@ -51,61 +65,60 @@ public:
 			cout << "Client not found\n";
 	}
 
-};
+
+    static void editClientInfo(Employee* employee) {
+        int id;
+        cout << "Enter Client ID to edit: ";
+        cin >> id;
 
 
+        Client* client = employee->searchClient(id);
+        if (client != nullptr) {
+            string name, password;
+            double balance;
 
+            cout << "Enter new name: ";
+            cin >> name;
+            cout << "Enter new password: ";
+            cin >> password;
+            cout << "Enter new balance: ";
+            cin >> balance;
 
-void EmployeeManager::editClientInfo(Employee* employee) {
-    int id;
-    cout << "Enter Client ID to edit: ";
-    cin >> id;
+            client->setName(name);
+            client->setPassword(password);
+            client->setbalance(balance);
 
-   
-    Client* client = FileHelper::getClient(id); 
-    if (client != nullptr) {
-        string name, password;
-        double balance;
+            employee->editClient(id,name,password,balance);
+            cout << "Client information updated successfully!\n";
+        }
 
-        cout << "Enter new name: ";
-        cin >> name;
-        cout << "Enter new password: ";
-        cin >> password;
-        cout << "Enter new balance: ";
-        cin >> balance;
-
-        client->setName(name);
-        client->setPassword(password);
-        client->setBalance(balance);
-
-        FileHelper::updateClients(); 
-        cout << "Client information updated successfully!\n";
-    } else {
-        cout << "Client with ID " << id << " not found!\n";
-    }
-}
-
-
-Employee* EmployeeManager::login(int id, string password) {
-    vector<Employee> employees = FileHelper::getEmployees();
-    
-    for (size_t i = 0; i < employees.size(); i++) {
-        if (employees[i].getId() == id && employees[i].getPassword() == password) {
-            // Return a dynamically allocated pointer to the authenticated employee
-            return new Employee(employees[i]);
+        else {
+            cout << "Client with ID " << id << " not found!\n";
         }
     }
-    return nullptr;
-}
 
 
-bool EmployeeManager::employeeOptions(Employee* employee) {
-    printEmployeMenu();
-    int choice;
-    cout << "Enter your choice: ";
-    cin >> choice;
+    static Employee* login(int id, string password) {
+        vector<Employee> employees = FileHelper::getEmployees();
 
-    switch (choice) {
+        for (size_t i = 0; i < employees.size(); i++) {
+            if (employees[i].getId() == id && employees[i].getPassword() == password) {
+                // Return a dynamically allocated pointer to the authenticated employee
+                return new Employee(employees[i]);
+            }
+        }
+        return nullptr;
+    }
+
+
+    static bool employeeOptions(Employee* employee) {
+        printEmployeeMenu();
+
+        int choice;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
         case 1:
             newClient(employee);
             return true;
@@ -123,9 +136,24 @@ bool EmployeeManager::employeeOptions(Employee* employee) {
             return true;
         case 6:
             cout << "Logging out...\n";
-            return false; 
+            return false;
         default:
             cout << "Invalid choice. Please try again.\n";
             return true;
+        }
     }
-}
+
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
